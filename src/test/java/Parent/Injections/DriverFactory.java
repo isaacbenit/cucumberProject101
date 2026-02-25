@@ -6,7 +6,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class DriverFactory {
-    private static WebDriver driver;
+    public static WebDriver driver;
 
     public static WebDriver initializeDriver(String browser) throws IllegalAccessException {
         switch (browser.toLowerCase()) {
