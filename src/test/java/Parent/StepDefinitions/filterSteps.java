@@ -18,9 +18,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class filterSteps {
-//    private WebDriver driver = DriverFactory.getDriver();
-//    private  StorePage storePage = new StorePage(driver);
-//    private HomePage homePage = new HomePage(driver);
+
     private boolean sortProductResult;
 //    private String filterByPriceResponce;
     private boolean priceRangeResult;
