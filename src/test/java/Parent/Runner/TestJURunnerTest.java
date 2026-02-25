@@ -11,11 +11,12 @@ import static io.cucumber.junit.CucumberOptions.SnippetType.CAMELCASE;
 @CucumberOptions(
         features = "src/test/resources/Features",
         glue = {"Parent"},
-       snippets = CAMELCASE,
+        snippets = CAMELCASE,
         plugin = {
                 "pretty",
                 "html:target/cucumber-report.html",
                 "json:target/cucumber-reports/Cucumber.json"}
+//        tags = "@account"
 )
 
 public class TestJURunnerTest {
