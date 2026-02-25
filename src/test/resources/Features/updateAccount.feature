@@ -8,7 +8,7 @@ Feature: update customer information functionality
     Given I am on the Account Page
     And I log in with valid credentials
       | username | user2  |
-      | password | 12345 |
+      | password | 12345  |
 
   Scenario: update my password
     When I update my password

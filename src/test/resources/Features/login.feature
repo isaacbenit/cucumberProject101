@@ -13,7 +13,7 @@ Feature: login functionality
   Scenario: Login with valid credentials
     When I log in with valid credentials
       | username | user2  |
-      | password | user2! |
+      | password | 12345 |
     Then I should be redirected to the Dashboard
     And I should see a welcome message with "user2"
 
