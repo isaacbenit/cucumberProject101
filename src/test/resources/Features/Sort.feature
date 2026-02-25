@@ -1,0 +1,15 @@
+@SortProduct
+Feature: Product Sorting
+  As a customer
+  I want to sort products
+  So that I can find products faster.
+
+  @SortByPriceLowToHigh
+  Scenario Outline: Sort by price low to high
+    Given I am on the store page
+    When I Sort by price "<Options>"
+    Examples:
+      | Options     |
+      | high to low |
+      | low to high |
+#    Then The products should be sorted by price from low to high

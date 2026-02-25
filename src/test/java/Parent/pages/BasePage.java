@@ -1,5 +1,6 @@
 package Parent.Pages;
 
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -16,7 +17,6 @@ public class BasePage {
         this.driver = driver;
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         PageFactory.initElements(driver, this);
-
     }
     public void load(String endPoint) throws IllegalAccessException {
         driver.get(configloader.getInstance().getBaseUrl() +endPoint);
