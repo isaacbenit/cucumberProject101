@@ -15,9 +15,8 @@ Feature: Customer Registration functionality
     Then the account is registered and I get welcome message with name "<username>"
     Examples:
       | username | email              | password        |
-      | cin12    | cin331@gmail.com   | kick45@askomdch |
-      | pothe    | pothe211@gmail.com | poth211         |
-      | deimr    | deimr233@gmail.com | deiem233        |
+      | isaac    | isaac@gmail.com    | isaacaskomdch   |
+
 
   @invalidRegistration
 

@@ -1,4 +1,4 @@
-package Parent.pages;//package Parent.pages;
+package Parent.Pages;//package Parent.pages;
 
 import Parent.StepDefinitions.RegisterSteps;
 import org.openqa.selenium.By;
@@ -12,6 +12,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import Parent.constants.Endpoint;
 
 import java.time.Duration;
+import java.util.UUID;
 
 public class AccountPage extends BasePage {
 
@@ -95,6 +96,14 @@ public class AccountPage extends BasePage {
         registerUsername(username);
         registerEmail(email);
         registerPassword(password);
+    }
+    public static String generateRandomEmail(String email){
+        String[] part = email.split("@");
+        return part[0] + "_"+ UUID.randomUUID() + "@" + part[1];
+    }
+
+    public static String generateUniqueUsername(String username) {
+        return username + "_" + UUID.randomUUID().toString().substring(0,4);
     }
 
 //   Login methods

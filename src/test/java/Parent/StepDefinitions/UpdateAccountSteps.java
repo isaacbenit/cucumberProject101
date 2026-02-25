@@ -1,7 +1,7 @@
 package Parent.StepDefinitions;
 
 import io.cucumber.datatable.DataTable;
-import Parent.pages.AccountPage;
+import Parent.Pages.AccountPage;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.Transpose;
 import io.cucumber.java.en.Given;

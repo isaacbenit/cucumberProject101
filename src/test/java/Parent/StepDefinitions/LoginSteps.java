@@ -8,7 +8,7 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import Parent.constants.Endpoint;
 import Parent.Injections.DriverFactory;
-import Parent.pages.AccountPage;
+import Parent.Pages.AccountPage;
 
 import java.util.Map;
 
