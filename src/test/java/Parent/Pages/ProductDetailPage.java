@@ -10,9 +10,11 @@ public class ProductDetailPage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-    @FindBy(css =".product_title.entry-title")
+    @FindBy(css = ".product_title.entry-title")
     private WebElement productTitle;
 
+    @FindBy(css = "button.single_add_to_cart_button")
+    private WebElement addToCartButton;
 
     public ProductDetailPage(WebDriver driver) {
         this.driver = driver;
@@ -25,5 +27,9 @@ public class ProductDetailPage {
 
     public String getProductTitle() {
         return productTitle.getText();
+    }
+
+    public void addToCart() {
+        addToCartButton.click();
     }
 }

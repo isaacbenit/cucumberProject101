@@ -1,4 +1,3 @@
-@update
 Feature: update customer information functionality
 
   As a registered customer
@@ -8,8 +7,8 @@ Feature: update customer information functionality
   Background:
     Given I am on the Account Page
     And I log in with valid credentials
-      | username | girl     |
-      | password | user2!  |
+      | username | girls     |
+      | password | girls@@   |
 
   Scenario: Update my password using current invalid password
     When I update my password using an invalid password
@@ -21,7 +20,7 @@ Feature: update customer information functionality
   Scenario: update my password
     When I update my password
       | firstName | lastName  | password        | newPassword  |
-      | Irakoze   | isaac     | user2!          | girl@!      |
+      | Irakoze   | isaac     | girls@@          | girl@!      |
     Then I should see a confirmation message
 
 
