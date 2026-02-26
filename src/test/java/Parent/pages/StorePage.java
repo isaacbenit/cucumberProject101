@@ -1,28 +1,24 @@
 package Parent.Pages;
 
-import Parent.Pages.BasePage;
 import Parent.constants.Endpoint;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class StorePage extends BasePage {
-    public StorePage (WebDriver driver){ super (driver);}
 
-    @FindBy(id = "woocommerce-product-search-field-0") private WebElement searchElement;
-    @FindBy(css = "button[value='Search']") private WebElement searchButton;
-    private By productTitle = By.cssSelector("h1.entry-title");
-    private By errorMessage = By.cssSelector(".woocommerce-no-products-found");
-    private By sort = By.cssSelector(".orderby");
-    private By deletedPrice = By.cssSelector(".price del bdi");
-    private By realPrice = By.cssSelector(".price bdi");
+    protected WebDriverWait wait;
+
     @FindBy(id = "product_cat")
     private WebElement productCategoryDropdown;
 
@@ -32,34 +28,30 @@ public class StorePage extends BasePage {
 
     @FindBy(css = "ul.products.columns-4")
     private WebElement productsContainer;
+
+    @FindBy(css = ".products .product")
+    private List<WebElement> allProducts;
+
+    @FindBy(css = ".woocommerce-loop-product__title")
+    private List<WebElement> productTitles;
+
+    @FindBy(css = ".ast-woo-product-category")
+    private List<WebElement> productCategories;
+
+
+    @FindBy(className = "product_title")
+    private List<WebElement> productTitleElements;
+
     private final By sliderSelector = By.className("ui-slider-handle");
     private By filterButton = By.cssSelector("button[type='submit']");
     private By storeListPrice = By.cssSelector(".astra-shop-summary-wrap bdi");
 
-
-    public void enterProductName(String productName){
-        searchElement.sendKeys(productName);
-    }
-    public void searchButton(){
-        searchButton.click();
+    public StorePage(WebDriver driver) {
+        super(driver);
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+        PageFactory.initElements(driver, this);
     }
 
-    public String getProductTitle(){
-        //wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
-       return driver.findElement(productTitle).getText();
-
-    }
-    public String getErrorMessage(){
-           return driver.findElement(errorMessage).getText();
-
-    }
-    public void selectPrice(String sortOption){
-        if (sortOption.equals("low to high")) {
-            new Select(driver.findElement(sort)).selectByValue("price");
-        } else if(sortOption.equals("high to low")){
-            new Select(driver.findElement(sort)).selectByValue("price-desc");
-        }
-    }
     public void openStorePage() throws IllegalAccessException{
         load(Endpoint.STORE.url);
     }
@@ -131,5 +123,4 @@ public class StorePage extends BasePage {
                     return price >= startingPrice && price <= endingPrice;
                 });
     }
-
 }
