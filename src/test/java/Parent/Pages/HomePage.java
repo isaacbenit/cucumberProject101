@@ -1,6 +1,5 @@
 package Parent.Pages;
 
-import Parent.Injections.DriverFactory;
 import Parent.constants.Endpoint;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -15,9 +14,6 @@ public class HomePage extends BasePage {
     private WebDriver driver;
     private WebDriverWait wait;
 
-
-//    @FindBy(id = "menu-item-1227")
-//    private WebElement storeMenu;
 
     @FindBy(linkText = "Anchor Bracelet")
     private WebElement anchorBracelet;
@@ -35,8 +31,6 @@ public class HomePage extends BasePage {
     private void clickMenu(WebElement menuItem) {
         wait.until(ExpectedConditions.elementToBeClickable(menuItem)).click();
     }
-
-
 
     public void clickOnProduct() {
         anchorBracelet.click();
