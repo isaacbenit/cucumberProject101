@@ -21,16 +21,12 @@ public class ProductDetailSteps {
     protected HomePage homePage;
 
 
-    @Given("I am on the store page")
-    public void iAmOnTheStorePage() throws IllegalAccessException {
-        driver = DriverFactory.getDriver();
-       homePage = new HomePage(driver);
-       homePage.openHomePage();
-    }
     @When("I click on any product on store page")
-    public void iClickOnAnyProductOnStorePage() {
+    public void iClickOnAnyProductOnStorePage() throws IllegalAccessException {
+        driver = DriverFactory.getDriver();
+        homePage = new HomePage(driver);
+        homePage.openHomePage();
         homePage.clickOnProduct();
-
     }
     @Then("I should see all product information")
     public void iShouldSeeAllProductInformation() {
@@ -38,8 +34,6 @@ public class ProductDetailSteps {
         Assert.assertTrue(productDetailPage.isProductTitleDisplayed());
         String productName = productDetailPage.getProductTitle();
         Assert.assertEquals("Anchor Bracelet",  productName);
-
-
     }
 
 }

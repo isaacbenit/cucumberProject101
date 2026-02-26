@@ -19,8 +19,8 @@ public class Hooks {
 
     @After
     public void after() {
-//        if (driver != null) {
-//            driver.quit();
-//        }
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }

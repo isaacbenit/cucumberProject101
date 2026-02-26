@@ -1,6 +1,5 @@
-package Parent.pages;//package Parent.pages;
+package Parent.Pages;
 
-import Parent.StepDefinitions.RegisterSteps;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
@@ -12,11 +11,11 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import Parent.constants.Endpoint;
 
 import java.time.Duration;
+import java.util.UUID;
 
 public class AccountPage extends BasePage {
 
 //    fields for login form
-
     @FindBy(id = "username")
     private WebElement usernameField;
     @FindBy(id = "password")
@@ -29,7 +28,6 @@ public class AccountPage extends BasePage {
     private WebElement errorMessage;
 
 // fields for registration form
-
     @FindBy(id = "reg_username")
     private WebElement username_regField;
     @FindBy(id = "reg_email")
@@ -96,6 +94,14 @@ public class AccountPage extends BasePage {
         registerEmail(email);
         registerPassword(password);
     }
+    public static String generateRandomEmail(String email){
+        String[] part = email.split("@");
+        return part[0] + "_"+ UUID.randomUUID() + "@" + part[1];
+    }
+
+    public static String generateUniqueUsername(String username) {
+        return username + "_" + UUID.randomUUID().toString().substring(0,4);
+    }
 
 //   Login methods
 
@@ -140,14 +146,6 @@ public class AccountPage extends BasePage {
         lastNameField_updateField.clear();
         lastNameField_updateField.sendKeys(lastName);
     }
-//    public  void UpdateDisplayName(String displayName) {
-//        displayName_updateField.clear();
-//        displayName_updateField.sendKeys(displayName);
-//    }
-//    public void UpdateEmail(String email) {
-//        emailField_updateField.clear();
-//        email_regField.sendKeys(email);
-//    }
     public void EnterPassword(String password) {
         currentPasswordField_updateField.sendKeys(password);
     }
@@ -167,7 +165,7 @@ public class AccountPage extends BasePage {
         return successUpdateMessage.getText();
     }
     public String getErrorPasswordMessageForUpdate() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(ErrorPasswordMessageForUpdate));
         return ErrorPasswordMessageForUpdate.getText();
     }

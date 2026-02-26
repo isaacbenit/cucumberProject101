@@ -14,19 +14,14 @@
 //}
 package Parent.StepDefinitions;
 
-import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.junit.Assert;
 import Parent.Injections.DriverFactory;
-import Parent.Injections.Hooks;
-import Parent.pages.AccountPage;
+import Parent.Pages.AccountPage;
 
-import java.util.Map;
-
-import static org.junit.Assert.assertEquals;
 
 public class RegisterSteps {
     protected static WebDriver driver;
@@ -41,13 +36,16 @@ public class RegisterSteps {
 
     @When("I register with username {string}, email {string}, and password {string}")
     public void iRegisterWithValidData(String username, String email, String password) {
-       accountPage.settingAllRegFields(username, email, password);
+        username = AccountPage.generateUniqueUsername(username);
+        email = AccountPage.generateRandomEmail(email);
+        accountPage.settingAllRegFields(username, email, password);
     }
 
     @Then("the account is registered and I get welcome message with name {string}")
     public void theAccountIsRegisteredAndIGetWelcomeMessageWithName(String expectedUsername) {
         String actualMessage = accountPage.isWelcomeMessage();
-        Assert.assertEquals(actualMessage, expectedUsername);
+        Assert.assertTrue(actualMessage.startsWith(expectedUsername));
+
     }
 
     @When("I register with invalid {string},{string} and {string}")
