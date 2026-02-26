@@ -14,6 +14,7 @@ import java.util.Map;
 
 import static Parent.StepDefinitions.RegisterSteps.driver;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 
 public class LoginSteps {
@@ -35,7 +36,7 @@ public class LoginSteps {
     @Then("I should see a welcome message with {string}")
     public void iShouldSeeAWelcomeMessageWith(String expectedUsername) {
         String actual = new AccountPage(driver).isWelcomeMessage();
-        assertEquals(actual, expectedUsername, "Usernames are not identical");
+        assertEquals("Usernames are not identical",actual,expectedUsername);
     }
 
     @When("I log in with username {string} and password {string}")
@@ -47,8 +48,10 @@ public class LoginSteps {
     @Then("I should see a login error message {string}")
     public void iShouldSeeALoginErrorMessage(String expectedMessage) {
         String actual = new AccountPage(driver).isErrorMessage();
-        assertEquals(actual, expectedMessage, "Error message did not match");
-
+        System.out.println(actual);
+        System.out.println(expectedMessage);
+//        assertTrue(expectedMessage.contains(actual));
+        assertEquals("Error message did not match", expectedMessage, actual);
     }
 
     private String errorMessage(String error) {

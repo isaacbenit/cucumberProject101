@@ -2,7 +2,7 @@ package Parent.StepDefinitions;
 
 import Parent.Injections.DriverFactory;
 import Parent.constants.Endpoint;
-import Parent.pages.StorePage;
+import Parent.Pages.StorePage;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;

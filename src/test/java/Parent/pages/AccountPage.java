@@ -176,7 +176,7 @@ public class AccountPage extends BasePage {
         return successUpdateMessage.getText();
     }
     public String getErrorPasswordMessageForUpdate() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(ErrorPasswordMessageForUpdate));
         return ErrorPasswordMessageForUpdate.getText();
     }

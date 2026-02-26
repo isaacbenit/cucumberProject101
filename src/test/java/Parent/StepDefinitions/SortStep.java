@@ -1,7 +1,7 @@
 package Parent.StepDefinitions;
 
 import Parent.Injections.DriverFactory;
-import Parent.pages.StorePage;
+import Parent.Pages.StorePage;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 

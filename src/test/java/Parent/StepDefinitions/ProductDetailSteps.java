@@ -21,16 +21,18 @@ public class ProductDetailSteps {
     protected HomePage homePage;
 
 
-    @Given("I am on the store page")
-    public void iAmOnTheStorePage() throws IllegalAccessException {
-        driver = DriverFactory.getDriver();
-       homePage = new HomePage(driver);
-       homePage.openHomePage();
-    }
+//    @Given("I am on the store page")
+//    public void iAmOnTheStorePage() throws IllegalAccessException {
+//        driver = DriverFactory.getDriver();
+//       homePage = new HomePage(driver);
+//       homePage.openHomePage();
+//    }
     @When("I click on any product on store page")
-    public void iClickOnAnyProductOnStorePage() {
+    public void iClickOnAnyProductOnStorePage() throws IllegalAccessException {
+        driver = DriverFactory.getDriver();
+        homePage = new HomePage(driver);
+        homePage.openHomePage();
         homePage.clickOnProduct();
-
     }
     @Then("I should see all product information")
     public void iShouldSeeAllProductInformation() {

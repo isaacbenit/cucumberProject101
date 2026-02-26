@@ -8,16 +8,6 @@ Feature: Customer Registration functionality
   Background:
     Given I am on the Account Page
 
-
-  Scenario Outline: Register with valid data
-    When I register with username "<username>", email "<email>", and password "<password>"
-    And clicks the register button
-    Then the account is registered and I get welcome message with name "<username>"
-    Examples:
-      | username | email              | password        |
-      | isaac    | isaac@gmail.com    | isaacaskomdch   |
-
-
   @invalidRegistration
 
   Scenario Outline: Register with invalid data
@@ -31,3 +21,12 @@ Feature: Customer Registration functionality
       | user1       |                      | user1!     | Error: Please provide a valid email address.                                    |
       | user2       | user2@com            | user2!     | Error: Please provide a valid email address.                                    |
       | user3       | user3@example.com    |            | Error: Please enter an account password.                                        |
+
+
+  Scenario Outline: Register with valid data
+    When I register with username "<username>", email "<email>", and password "<password>"
+    And clicks the register button
+    Then the account is registered and I get welcome message with name "<username>"
+    Examples:
+      | username | email              | password        |
+      | isaac    | isaac@gmail.com    | isaacaskomdch   |
