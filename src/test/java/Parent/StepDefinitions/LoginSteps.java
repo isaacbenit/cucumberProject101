@@ -2,24 +2,17 @@ package Parent.StepDefinitions;
 
 
 import io.cucumber.datatable.DataTable;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.openqa.selenium.WebDriver;
-import Parent.constants.Endpoint;
-import Parent.Injections.DriverFactory;
 import Parent.Pages.AccountPage;
 
 import java.util.Map;
 
 import static Parent.StepDefinitions.RegisterSteps.driver;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 
 public class LoginSteps {
-//    private WebDriver driver;
-//    public static AccountPage accountPage;
 
 
     @When("I log in with valid credentials")
@@ -50,7 +43,6 @@ public class LoginSteps {
         String actual = new AccountPage(driver).isErrorMessage();
         System.out.println(actual);
         System.out.println(expectedMessage);
-//        assertTrue(expectedMessage.contains(actual));
         assertEquals("Error message did not match", expectedMessage, actual);
     }
 

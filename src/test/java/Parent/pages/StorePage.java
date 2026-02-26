@@ -45,7 +45,6 @@ public class StorePage extends BasePage {
     }
 
     public String getProductTitle(){
-        //wait.until(webDriver -> ((JavascriptExecutor) webDriver).executeScript("return document.readyState").equals("complete"));
        return driver.findElement(productTitle).getText();
 
     }
@@ -96,6 +95,7 @@ public class StorePage extends BasePage {
         return getVisibleProductsByCategory(category).size();
     }
 
+    // we use the locator by because it avoids StaleElementReferenceException
 
     public boolean filterByPrice(int startingPrice, int endingPrice) {
         while (Integer.parseInt(driver.findElement(By.className("from")).getText().replace("$", "")) < startingPrice) {
@@ -131,5 +131,29 @@ public class StorePage extends BasePage {
                     return price >= startingPrice && price <= endingPrice;
                 });
     }
+
+    public String getPriceSortOrder() {
+        List<Double> prices = driver.findElements(storeListPrice).stream()
+                .filter(val -> !driver.findElements(By.cssSelector("del bdi")).contains(val))
+                .map(val -> Double.parseDouble(val.getText().replace("$", "")))
+                .toList();
+
+        boolean ascending = true;
+        boolean descending = true;
+
+        for (int i = 1; i < prices.size(); i++) {
+            if (prices.get(i) < prices.get(i - 1)) {
+                ascending = false;
+            }
+            if (prices.get(i) > prices.get(i - 1)) {
+                descending = false;
+            }
+        }
+
+        if (ascending) return "low to high";
+        if (descending) return "high to low";
+        return "unsorted";
+    }
+
 
 }
