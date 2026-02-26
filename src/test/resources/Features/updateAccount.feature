@@ -6,17 +6,26 @@ Feature: update customer information functionality
 
   Background:
     Given I am on the Account Page
-    And I have registered a new user with a random suffix
-    And I log in with the credentials I just registered
-
-  Scenario: update my password
-    When I update my password
-      | firstName | lastName | password | newPassword  |
-      | Isaac     | Benit    | Test123! | NewTest123! |
-    Then I should see a confirmation message
+    And I log in with valid credentials
+      | username | girls     |
+      | password | girls@@   |
 
   Scenario: Update my password using current invalid password
     When I update my password using an invalid password
-      | firstName | lastName | password  | newPassword  |
-      | Isaac     | Benit    | wrongpass | NewTest123!  |
+      | firstName | lastName  | password        | newPassword  |
+      | Irakoze   | isaac     | benit           |  12345       |
     Then I should see an error message
+
+
+  Scenario: update my password
+    When I update my password
+      | firstName | lastName  | password        | newPassword  |
+      | Irakoze   | isaac     | girls@@          | girl@!      |
+    Then I should see a confirmation message
+
+
+
+
+
+
+

@@ -2,22 +2,13 @@ package Parent.StepDefinitions;
 
 import io.cucumber.datatable.DataTable;
 import Parent.Pages.AccountPage;
-import io.cucumber.java.PendingException;
-import io.cucumber.java.Transpose;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
 import java.util.Map;
 
 public class UpdateAccountSteps {
-    private WebDriver driver;
-    public static AccountPage accountPage;
 
 
     @When("I update my password")
@@ -25,7 +16,6 @@ public class UpdateAccountSteps {
         RegisterSteps.accountPage.clickAccountDetailLink();
         Map<String, String> credentials = table.transpose().asMap(String.class, String.class);
         RegisterSteps.accountPage.settingAllUpdateFields(credentials.get("firstName"),credentials.get("lastName"),credentials.get("password"), credentials.get("newPassword"));
-        RegisterSteps.accountPage.clickSaveChangesButton();
     }
 
     @Then("I should see a confirmation message")
@@ -39,7 +29,6 @@ public class UpdateAccountSteps {
         RegisterSteps.accountPage.clickAccountDetailLink();
         Map<String, String> credentials = table.transpose().asMap(String.class, String.class);
         RegisterSteps.accountPage.settingAllUpdateFields(credentials.get("firstName"),credentials.get("lastName"),credentials.get("password"), credentials.get("newPassword"));
-        RegisterSteps.accountPage.clickSaveChangesButton();
     }
 
     @Then("I should see an error message")

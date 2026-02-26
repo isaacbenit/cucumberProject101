@@ -1,20 +1,5 @@
-//package Parent.StepDefinitions;
-//
-//import io.cucumber.java.en.Then;
-//import io.cucumber.java.en.When;
-//
-//public class RegisterSteps {
-//    @When("I paste the link of my website in the search bar")
-//    public void i_paste_the_link_of_my_website_in_the_search_bar() {
-//    }
-//    @Then("I should be directed to the home page")
-//    public void i_should_be_directed_to_the_home_page() {
-//    }
-//
-//}
 package Parent.StepDefinitions;
 
-import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -22,16 +7,11 @@ import org.openqa.selenium.WebDriver;
 import org.junit.Assert;
 import Parent.Injections.DriverFactory;
 import Parent.Pages.AccountPage;
-import Parent.Utils.TestData;
 
-import java.util.Map;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class RegisterSteps {
     protected static WebDriver driver;
     protected static AccountPage accountPage;
-
-    private static final String[] TEAM_NAMES = {"eliezer", "penina", "christelle", "isaac", "anifa", "emmy"};
 
     @Given("I am on the Account Page")
     public void iAmOnTheAccountPage() throws IllegalAccessException {
@@ -40,30 +20,18 @@ public class RegisterSteps {
         accountPage.openAccountPage();
     }
 
-    @Given("I have registered a new user with a random suffix")
-    public void iHaveRegisteredANewUserWithRandomSuffix() {
-        String baseName = TEAM_NAMES[ThreadLocalRandom.current().nextInt(TEAM_NAMES.length)];
-        String username = TestData.uniqueUsername(baseName);
-        String email = TestData.uniqueEmail(baseName);
-        String password = "Test123!";
-        TestData.setLastRegisteredUser(username, password);
-        accountPage.settingAllRegFields(username, email, password);
-        accountPage.clickRegisterButton();
-    }
-
     @When("I register with username {string}, email {string}, and password {string}")
     public void iRegisterWithValidData(String username, String email, String password) {
-        String uniqueUser = TestData.uniqueUsername(username);
-        String uniqueEmail = TestData.uniqueEmail(username);
-        TestData.setLastRegisteredUser(uniqueUser, password);
-        accountPage.settingAllRegFields(uniqueUser, uniqueEmail, password);
+        username = AccountPage.generateUniqueUsername(username);
+        email = AccountPage.generateRandomEmail(email);
+        accountPage.settingAllRegFields(username, email, password);
     }
 
     @Then("the account is registered and I get welcome message with name {string}")
-    public void theAccountIsRegisteredAndIGetWelcomeMessageWithName(String expectedBaseName) {
+    public void theAccountIsRegisteredAndIGetWelcomeMessageWithName(String expectedUsername) {
         String actualMessage = accountPage.isWelcomeMessage();
-        String expectedUsername = TestData.getLastRegisteredUsername();
-        Assert.assertEquals("Welcome message should show the registered username", expectedUsername, actualMessage);
+        Assert.assertTrue(actualMessage.startsWith(expectedUsername));
+
     }
 
     @When("I register with invalid {string},{string} and {string}")
