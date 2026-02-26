@@ -15,7 +15,6 @@ import java.util.List;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class filterSteps {
 //    private WebDriver driver = DriverFactory.getDriver();
@@ -48,11 +47,10 @@ public class filterSteps {
     public void iShouldSeeProductsInCategory(int expectedCount, String category) {
         int actualCount = storePage.getDisplayedProductCountByCategory(category);
         assertEquals(
+                "Expected product count: " + expectedCount + ", but found: " + actualCount + " products for category: " + category,
                 expectedCount,
-                actualCount,
-                "Expected product count: " + expectedCount + ", but found: " + actualCount + " products for category: " + category
+                actualCount
         );
-//        assertEquals(actualCount, expectedCount,"Expected product count: " + expectedCount + ", but found: " + actualCount + " products for category: " + category);
     }
 
     @When("I filter products within the price range")

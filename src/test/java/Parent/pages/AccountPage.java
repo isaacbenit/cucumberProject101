@@ -1,4 +1,4 @@
-package Parent.pages;//package Parent.pages;
+package Parent.Pages;//package Parent.pages;
 
 import Parent.StepDefinitions.RegisterSteps;
 import org.openqa.selenium.By;
@@ -13,7 +13,7 @@ import Parent.constants.Endpoint;
 
 import java.time.Duration;
 
-public class AccountPage extends BasePage {
+public class AccountPage extends Parent.Pages.BasePage {
 
 //    fields for login form
 
@@ -57,7 +57,7 @@ public class AccountPage extends BasePage {
     private WebElement passwordField2_updateField;
     @FindBy(css = "button[value='Save changes'] ")
     private WebElement saveChangesButton_UpdateField;
-    @FindBy(css = "a[href='https://askomdch.com/account/edit-account/']")
+    @FindBy(css = "a[href*='edit-account']")
     private WebElement AccountDetailLink;
     @FindBy(css = "[class=\"woocommerce-message\"]")
     private WebElement successUpdateMessage;

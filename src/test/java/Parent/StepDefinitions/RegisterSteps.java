@@ -21,16 +21,17 @@ import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.junit.Assert;
 import Parent.Injections.DriverFactory;
-import Parent.Injections.Hooks;
-import Parent.pages.AccountPage;
+import Parent.Pages.AccountPage;
+import Parent.Utils.TestData;
 
 import java.util.Map;
-
-import static org.junit.Assert.assertEquals;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class RegisterSteps {
     protected static WebDriver driver;
     protected static AccountPage accountPage;
+
+    private static final String[] TEAM_NAMES = {"eliezer", "penina", "christelle", "isaac", "anifa", "emmy"};
 
     @Given("I am on the Account Page")
     public void iAmOnTheAccountPage() throws IllegalAccessException {
@@ -39,15 +40,30 @@ public class RegisterSteps {
         accountPage.openAccountPage();
     }
 
+    @Given("I have registered a new user with a random suffix")
+    public void iHaveRegisteredANewUserWithRandomSuffix() {
+        String baseName = TEAM_NAMES[ThreadLocalRandom.current().nextInt(TEAM_NAMES.length)];
+        String username = TestData.uniqueUsername(baseName);
+        String email = TestData.uniqueEmail(baseName);
+        String password = "Test123!";
+        TestData.setLastRegisteredUser(username, password);
+        accountPage.settingAllRegFields(username, email, password);
+        accountPage.clickRegisterButton();
+    }
+
     @When("I register with username {string}, email {string}, and password {string}")
     public void iRegisterWithValidData(String username, String email, String password) {
-       accountPage.settingAllRegFields(username, email, password);
+        String uniqueUser = TestData.uniqueUsername(username);
+        String uniqueEmail = TestData.uniqueEmail(username);
+        TestData.setLastRegisteredUser(uniqueUser, password);
+        accountPage.settingAllRegFields(uniqueUser, uniqueEmail, password);
     }
 
     @Then("the account is registered and I get welcome message with name {string}")
-    public void theAccountIsRegisteredAndIGetWelcomeMessageWithName(String expectedUsername) {
+    public void theAccountIsRegisteredAndIGetWelcomeMessageWithName(String expectedBaseName) {
         String actualMessage = accountPage.isWelcomeMessage();
-        Assert.assertEquals(actualMessage, expectedUsername);
+        String expectedUsername = TestData.getLastRegisteredUsername();
+        Assert.assertEquals("Welcome message should show the registered username", expectedUsername, actualMessage);
     }
 
     @When("I register with invalid {string},{string} and {string}")

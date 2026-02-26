@@ -8,19 +8,21 @@ Feature: Customer Registration functionality
   Background:
     Given I am on the Account Page
 
-
   Scenario Outline: Register with valid data
     When I register with username "<username>", email "<email>", and password "<password>"
     And clicks the register button
     Then the account is registered and I get welcome message with name "<username>"
+
     Examples:
-      | username | email              | password        |
-      | cin12    | cin331@gmail.com   | kick45@askomdch |
-      | pothe    | pothe211@gmail.com | poth211         |
-      | deimr    | deimr233@gmail.com | deiem233        |
+      | username   | email              | password  |
+      | eliezer    | eliezer@team.test  | Test123!  |
+      | penina     | penina@team.test    | Test123!  |
+      | christelle | christelle@team.test| Test123!  |
+      | isaac      | isaac@team.test    | Test123!  |
+      | anifa      | anifa@team.test    | Test123!  |
+      | emmy       | emmy@team.test     | Test123!  |
 
   @invalidRegistration
-
   Scenario Outline: Register with invalid data
     When I register with invalid "<username>","<email>" and "<password>"
     And clicks the register button

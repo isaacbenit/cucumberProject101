@@ -23,7 +23,7 @@ public class ProductDetailSteps {
 
     @Given("I am on the store page")
     public void iAmOnTheStorePage() throws IllegalAccessException {
-        driver = DriverFactory.getDriver();
+       driver  = DriverFactory.getDriver();
        homePage = new HomePage(driver);
        homePage.openHomePage();
     }

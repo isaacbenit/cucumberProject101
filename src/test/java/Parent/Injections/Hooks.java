@@ -14,13 +14,13 @@ public class Hooks {
     @Before
     public void before() throws IllegalAccessException {
         driver = DriverFactory.initializeDriver(System.getProperty("browser", "chrome"));
-
     }
 
     @After
     public void after() {
-//        if (driver != null) {
-//            driver.quit();
-//        }
+        WebDriver driver = DriverFactory.getDriver();
+        if (driver != null) {
+            driver.quit();
+        }
     }
 }
