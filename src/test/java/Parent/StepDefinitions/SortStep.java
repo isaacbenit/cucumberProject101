@@ -18,7 +18,7 @@ public class SortStep {
     public void iSortByPrice(String sortOption) {
         driver = DriverFactory.getDriver();
         storePage = new StorePage(driver);
-        storePage.selectPrice(sortOption);
+        storePage.sortByPrice(sortOption);
     }
 
     @Then("The products should be sorted by price from {string}")

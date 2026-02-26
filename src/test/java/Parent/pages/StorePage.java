@@ -1,6 +1,5 @@
 package Parent.Pages;
 
-import Parent.Pages.BasePage;
 import Parent.constants.Endpoint;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -52,7 +51,7 @@ public class StorePage extends BasePage {
            return driver.findElement(errorMessage).getText();
 
     }
-    public void selectPrice(String sortOption){
+    public void sortByPrice(String sortOption){
         if (sortOption.equals("low to high")) {
             new Select(driver.findElement(sort)).selectByValue("price");
         } else if(sortOption.equals("high to low")){
