@@ -3,7 +3,7 @@ Feature: Customer Registration functionality
 
   As a new Customer
   I want to create an account
-  So that I can log in
+  So that I can log in and have a personalized experience
 
   Background:
     Given I am on the Account Page
