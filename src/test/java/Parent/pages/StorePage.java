@@ -6,19 +6,22 @@ import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class StorePage extends BasePage {
+    public StorePage (WebDriver driver){ super (driver);}
 
-    protected WebDriverWait wait;
-
+    @FindBy(id = "woocommerce-product-search-field-0") private WebElement searchElement;
+    @FindBy(css = "button[value='Search']") private WebElement searchButton;
+    private By productTitle = By.cssSelector("h1.entry-title");
+    private By errorMessage = By.cssSelector(".woocommerce-no-products-found");
+    private By sort = By.cssSelector(".orderby");
+    private By deletedPrice = By.cssSelector(".price del bdi");
+    private By realPrice = By.cssSelector(".price bdi");
     @FindBy(id = "product_cat")
     private WebElement productCategoryDropdown;
 
@@ -28,30 +31,33 @@ public class StorePage extends BasePage {
 
     @FindBy(css = "ul.products.columns-4")
     private WebElement productsContainer;
-
-    @FindBy(css = ".products .product")
-    private List<WebElement> allProducts;
-
-    @FindBy(css = ".woocommerce-loop-product__title")
-    private List<WebElement> productTitles;
-
-    @FindBy(css = ".ast-woo-product-category")
-    private List<WebElement> productCategories;
-
-
-    @FindBy(className = "product_title")
-    private List<WebElement> productTitleElements;
-
     private final By sliderSelector = By.className("ui-slider-handle");
     private By filterButton = By.cssSelector("button[type='submit']");
     private By storeListPrice = By.cssSelector(".astra-shop-summary-wrap bdi");
 
-    public StorePage(WebDriver driver) {
-        super(driver);
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(15));
-        PageFactory.initElements(driver, this);
+
+    public void enterProductName(String productName){
+        searchElement.sendKeys(productName);
+    }
+    public void searchButton(){
+        searchButton.click();
     }
 
+    public String getProductTitle(){
+       return driver.findElement(productTitle).getText();
+
+    }
+    public String getErrorMessage(){
+           return driver.findElement(errorMessage).getText();
+
+    }
+    public void sortByPrice(String sortOption){
+        if (sortOption.equals("low to high")) {
+            new Select(driver.findElement(sort)).selectByValue("price");
+        } else if(sortOption.equals("high to low")){
+            new Select(driver.findElement(sort)).selectByValue("price-desc");
+        }
+    }
     public void openStorePage() throws IllegalAccessException{
         load(Endpoint.STORE.url);
     }
@@ -88,6 +94,7 @@ public class StorePage extends BasePage {
         return getVisibleProductsByCategory(category).size();
     }
 
+    // we use the locator by because it avoids StaleElementReferenceException
 
     public boolean filterByPrice(int startingPrice, int endingPrice) {
         while (Integer.parseInt(driver.findElement(By.className("from")).getText().replace("$", "")) < startingPrice) {
@@ -123,4 +130,29 @@ public class StorePage extends BasePage {
                     return price >= startingPrice && price <= endingPrice;
                 });
     }
+
+    public String getPriceSortOrder() {
+        List<Double> prices = driver.findElements(storeListPrice).stream()
+                .filter(val -> !driver.findElements(By.cssSelector("del bdi")).contains(val))
+                .map(val -> Double.parseDouble(val.getText().replace("$", "")))
+                .toList();
+
+        boolean ascending = true;
+        boolean descending = true;
+
+        for (int i = 1; i < prices.size(); i++) {
+            if (prices.get(i) < prices.get(i - 1)) {
+                ascending = false;
+            }
+            if (prices.get(i) > prices.get(i - 1)) {
+                descending = false;
+            }
+        }
+
+        if (ascending) return "low to high";
+        if (descending) return "high to low";
+        return "unsorted";
+    }
+
+
 }

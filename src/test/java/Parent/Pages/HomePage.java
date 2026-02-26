@@ -16,9 +16,6 @@ public class HomePage extends BasePage {
     private WebDriverWait wait;
 
 
-//    @FindBy(id = "menu-item-1227")
-//    private WebElement storeMenu;
-
     @FindBy(linkText = "Anchor Bracelet")
     private WebElement anchorBracelet;
 
@@ -35,8 +32,6 @@ public class HomePage extends BasePage {
     private void clickMenu(WebElement menuItem) {
         wait.until(ExpectedConditions.elementToBeClickable(menuItem)).click();
     }
-
-
 
     public void clickOnProduct() {
         anchorBracelet.click();

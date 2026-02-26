@@ -14,15 +14,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class filterSteps {
-//    private WebDriver driver = DriverFactory.getDriver();
-//    private  StorePage storePage = new StorePage(driver);
-//    private HomePage homePage = new HomePage(driver);
     private boolean sortProductResult;
-//    private String filterByPriceResponce;
     private boolean priceRangeResult;
     private String priceRangeResultMessage;
 
@@ -42,8 +37,6 @@ public class filterSteps {
         storePage.selectCategoryByValue(categoryValue);
     }
 
-
-
     @Then("I should see {int} products in the {string} category")
     public void iShouldSeeProductsInCategory(int expectedCount, String category) {
         int actualCount = storePage.getDisplayedProductCountByCategory(category);
@@ -52,7 +45,6 @@ public class filterSteps {
                 actualCount,
                 "Expected product count: " + expectedCount + ", but found: " + actualCount + " products for category: " + category
         );
-//        assertEquals(actualCount, expectedCount,"Expected product count: " + expectedCount + ", but found: " + actualCount + " products for category: " + category);
     }
 
     @When("I filter products within the price range")

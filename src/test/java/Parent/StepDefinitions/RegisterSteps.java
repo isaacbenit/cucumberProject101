@@ -14,19 +14,14 @@
 //}
 package Parent.StepDefinitions;
 
-import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.junit.Assert;
 import Parent.Injections.DriverFactory;
-import Parent.Injections.Hooks;
 import Parent.Pages.AccountPage;
 
-import java.util.Map;
-
-import static org.junit.Assert.assertEquals;
 
 public class RegisterSteps {
     protected static WebDriver driver;

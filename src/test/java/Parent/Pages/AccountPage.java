@@ -17,7 +17,6 @@ import java.util.UUID;
 public class AccountPage extends BasePage {
 
 //    fields for login form
-
     @FindBy(id = "username")
     private WebElement usernameField;
     @FindBy(id = "password")
@@ -30,7 +29,6 @@ public class AccountPage extends BasePage {
     private WebElement errorMessage;
 
 // fields for registration form
-
     @FindBy(id = "reg_username")
     private WebElement username_regField;
     @FindBy(id = "reg_email")
@@ -149,14 +147,6 @@ public class AccountPage extends BasePage {
         lastNameField_updateField.clear();
         lastNameField_updateField.sendKeys(lastName);
     }
-//    public  void UpdateDisplayName(String displayName) {
-//        displayName_updateField.clear();
-//        displayName_updateField.sendKeys(displayName);
-//    }
-//    public void UpdateEmail(String email) {
-//        emailField_updateField.clear();
-//        email_regField.sendKeys(email);
-//    }
     public void EnterPassword(String password) {
         currentPasswordField_updateField.sendKeys(password);
     }
