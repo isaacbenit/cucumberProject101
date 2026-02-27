@@ -21,7 +21,7 @@ Feature: update customer information functionality
   Scenario: update my password
     When I update my password
       | firstName | lastName  | password        | newPassword  |
-      | Irakoze   | isaac     | user2!          | girl@!      |
+      | Irakoze   | isaac     | user2!          | user21!      |
     Then I should see a confirmation message
 
 
