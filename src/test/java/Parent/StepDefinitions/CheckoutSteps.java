@@ -56,4 +56,11 @@ public class CheckoutSteps {
                 checkoutPage.getConfirmationMessage().contains("Thank you")
         );
     }
+
+    @Then("I should see an error message {string}")
+    public void iShouldSeeAnErrorMessage(String expectedMessage) {
+        String actualMessage = checkoutPage.getErrorMessage();
+        Assert.assertEquals("Error message mismatch!", expectedMessage, actualMessage);
+    }
+
 }
