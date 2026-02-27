@@ -11,7 +11,6 @@ import static io.cucumber.junit.CucumberOptions.SnippetType.CAMELCASE;
 @RunWith(Cucumber.class)
 @CucumberOptions(
         features = "src/test/resources/Features",
-        tags= "@SCRUM-26",
         snippets = CAMELCASE,
         glue = {"Parent"},
         plugin = {
