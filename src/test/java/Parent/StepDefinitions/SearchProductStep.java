@@ -11,7 +11,7 @@ import org.openqa.selenium.WebDriver;
 
 public class SearchProductStep {
     protected WebDriver driver;
-    protected StorePage storePage;
+    protected static StorePage storePage;
 
     @Given("I am on the store page")
     public void iAmOnTheStorePage() throws IllegalAccessException{

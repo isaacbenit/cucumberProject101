@@ -1,6 +1,5 @@
-package Parent.Pages;//package Parent.pages;
+package Parent.Pages;
 
-import Parent.StepDefinitions.RegisterSteps;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;

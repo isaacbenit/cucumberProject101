@@ -1,6 +1,5 @@
 package Parent.Pages;
 
-import Parent.Injections.DriverFactory;
 import Parent.constants.Endpoint;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
