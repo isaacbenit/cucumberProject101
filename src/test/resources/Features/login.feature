@@ -9,7 +9,7 @@ Feature: login functionality
 
   Background:
     Given I am on the Account Page
-
+  @SCRUM-35
   Scenario Outline: Login with invalid credentials
     When I log in with username "<username>" and password "<password>"
     Then I should see a login error message "<errorMessage>"
@@ -20,7 +20,7 @@ Feature: login functionality
       |          | user2!    | Error: Username is required.                                                                                                    |
       | user2    |           | Error: The password field is empty.                                                                                             |
       | unknown  | user2!    | Error: The username unknown is not registered on this site. If you are unsure of your username, try your email address instead. |
-
+  @SCRUM-5
   Scenario: Login with valid credentials
     When I log in with valid credentials
       | username | umuhungu        |

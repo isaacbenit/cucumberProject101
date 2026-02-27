@@ -1,5 +1,5 @@
 Feature: Remove product from cart
-
+  @SCRUM-61
   Scenario: User removes a product from the shopping cart
 
     Given I have product in the cart

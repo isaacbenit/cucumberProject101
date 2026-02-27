@@ -10,6 +10,7 @@ Feature: Customer Registration functionality
 
   @invalidRegistration
 
+  @SCRUM-43
   Scenario Outline: Register with invalid data
     When I register with invalid "<username>","<email>" and "<password>"
     And clicks the register button
@@ -22,7 +23,7 @@ Feature: Customer Registration functionality
       | user2       | user2@com            | user2!     | Error: Please provide a valid email address.                                    |
       | user3       | user3@example.com    |            | Error: Please enter an account password.                                        |
 
-
+  @SCRUM-41
   Scenario Outline: Register with valid data
     When I register with username "<username>", email "<email>", and password "<password>"
     And clicks the register button
