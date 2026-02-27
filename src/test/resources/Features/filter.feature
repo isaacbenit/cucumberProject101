@@ -16,7 +16,7 @@ Feature: filter functionality
     Then I should see only products within the specified price range
 
 
-  @filterCategory
+  @SCRUM-34
   Scenario Outline: Filter products by category and verify product count
     When I select and click category "<category>" from the category filter
     Then I should see <count> products in the "<category>" category

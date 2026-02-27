@@ -2,7 +2,6 @@ package Parent.Runner;
 
 import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
-import jdk.jshell.Snippet;
 import org.junit.runner.RunWith;
 
 import static io.cucumber.junit.CucumberOptions.SnippetType.CAMELCASE;
@@ -15,7 +14,8 @@ import static io.cucumber.junit.CucumberOptions.SnippetType.CAMELCASE;
         plugin = {
                 "pretty",
                 "html:target/cucumber-report.html",
-                "json:target/cucumber-reports/Cucumber.json"}
+                "json:target/cucumber-reports/Cucumber.json"},
+        tags = "@SCRUM-49"
 )
 
 public class TestJURunnerTest {

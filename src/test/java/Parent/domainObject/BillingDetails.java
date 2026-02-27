@@ -1,8 +1,5 @@
 package Parent.domainObject;
 
-//public class BillingDetails {
-//}
-
 
 public class BillingDetails {
     private String firstname;

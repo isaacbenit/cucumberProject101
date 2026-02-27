@@ -32,7 +32,6 @@ public class filterSteps {
         storePage.openStorePage();
         String categoryValue = category.toLowerCase()
                 .replace("'", "")
-                .replace("'", "")
                 .replace(" ", "-");
         storePage.selectCategoryByValue(categoryValue);
     }

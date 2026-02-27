@@ -28,10 +28,6 @@ public class HomePage extends BasePage {
     }
 
 
-    private void clickMenu(WebElement menuItem) {
-        wait.until(ExpectedConditions.elementToBeClickable(menuItem)).click();
-    }
-
     public void clickOnProduct() {
         anchorBracelet.click();
     }

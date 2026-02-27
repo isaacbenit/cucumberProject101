@@ -92,7 +92,7 @@ public class StorePage extends BasePage {
     public List<WebElement> getVisibleProductsByCategory(String category) {
         String categorySlug = category.toLowerCase()
                 .replace("'", "")
-                .replace("'", "")
+//                .replace("'", "")
                 .replace(" ", "-");
 
         wait.until(ExpectedConditions.visibilityOf(productsContainer));
