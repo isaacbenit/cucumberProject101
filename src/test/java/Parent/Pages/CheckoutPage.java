@@ -33,6 +33,9 @@ public class CheckoutPage extends BasePage {
 
     @FindBy(css = ".woocommerce-notice") private WebElement confirmationMessage;
     @FindBy(css = ".woocommerce-order-overview__order.order") private WebElement orderNumber;
+    @FindBy(xpath = "//li[normalize-space()='Invalid billing email address']") private WebElement invalidEmailField;
+//    WebElement errorBanner = driver.findElement(By.xpath("[class=\"woocommerce-error\"]"));
+
 
     private final WebDriverWait wait;
 
@@ -41,11 +44,6 @@ public class CheckoutPage extends BasePage {
         this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
-    private void type(WebElement element, String value) {
-        if (value != null && !value.isEmpty()) {
-            element.sendKeys(value);
-        }
-    }
 
     public CheckoutPage setBillingDetails(BillingDetails billing) {
 
@@ -104,6 +102,12 @@ public class CheckoutPage extends BasePage {
         wait.until(ExpectedConditions.visibilityOf(confirmationMessage));
         return confirmationMessage.getText();
     }
+
+    public String getErrorMessage() {
+        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//li[normalize-space()='Invalid billing email address']")));
+        return invalidEmailField.getText();
+    }
+
 
     public String getOrderNumber() {
         wait.until(ExpectedConditions.visibilityOf(orderNumber));
