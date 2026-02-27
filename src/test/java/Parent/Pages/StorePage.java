@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 public class StorePage extends BasePage {
     public StorePage (WebDriver driver){ super (driver);}
 
+
     @FindBy(id = "woocommerce-product-search-field-0") private WebElement searchElement;
     @FindBy(css = "button[value='Search']") private WebElement searchButton;
     private By productTitle = By.cssSelector("h1.entry-title");
@@ -28,12 +29,28 @@ public class StorePage extends BasePage {
     @FindBy(css = "ul.products li.product")
     private List<WebElement> productItems;
 
-
     @FindBy(css = "ul.products.columns-4")
     private WebElement productsContainer;
     private final By sliderSelector = By.className("ui-slider-handle");
     private By filterButton = By.cssSelector("button[type='submit']");
     private By storeListPrice = By.cssSelector(".astra-shop-summary-wrap bdi");
+
+    @FindBy(css = "a[title='View cart']") private WebElement ViewCartLink;
+    @FindBy(css = ".woocommerce-message") private WebElement successMessage;
+
+    public void addToCart(String productName){
+        By addToCartButton = By.cssSelector("a[aria-label='Add “" + productName + "” to your cart']");
+        wait.until(ExpectedConditions.elementToBeClickable(addToCartButton)).click();
+        wait.until(ExpectedConditions.elementToBeClickable(ViewCartLink)).click();
+
+    }
+    public void removeFromCart(){
+        By removeButton = By.cssSelector(".remove");
+        wait.until(ExpectedConditions.elementToBeClickable(removeButton)).click();
+    }
+    public boolean isSuccessMessageDisplayed() {
+        return wait.until(ExpectedConditions.visibilityOf(successMessage)).isDisplayed();
+    }
 
 
     public void enterProductName(String productName){
