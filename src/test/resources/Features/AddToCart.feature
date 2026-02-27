@@ -6,7 +6,7 @@ Feature: Add product to cart functionality
   Background: customer is on the store page
   Given I am on the store page
 
-
+@SCRUM-58
   Scenario Outline: Add products to cart
     When I add a "<product_name>" to the cart
     Then I should see 1 "<product_name>" in the cart

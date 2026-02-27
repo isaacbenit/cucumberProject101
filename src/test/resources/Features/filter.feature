@@ -6,7 +6,7 @@ Feature: filter functionality
   Background:
     Given I am on the store page
 
-  @filterPrice
+  @filterPrice @SCRUM-26
   Scenario: Filter products by different price ranges
     When I filter products within the price range
       | min_price | max_price |
